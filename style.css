@@ -1,0 +1,237 @@
+:root {
+    --primary-bg: #1e1e1e;
+    --secondary-bg: #2d2d2d;
+    --display-bg: #000;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --btn-number: #333333;
+    --btn-operator: #ff9500;
+    --btn-equals: #ff9500;
+    --btn-clear: #a6a6a6;
+    --btn-hover: #4a4a4a;
+    --btn-active: #5a5a5a;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --border-radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.calculator {
+    background: var(--primary-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: 0 10px 30px var(--shadow);
+    width: 100%;
+    max-width: 320px;
+    backdrop-filter: blur(10px);
+}
+
+.display {
+    background: var(--display-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.display-history {
+    color: var(--text-secondary);
+    font-size: 14px;
+    min-height: 20px;
+    opacity: 0.7;
+    word-break: break-all;
+}
+
+.display-current {
+    color: var(--text-primary);
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.2;
+    word-break: break-all;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.btn {
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 20px;
+    font-weight: 400;
+    height: 60px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-primary);
+    outline: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px var(--shadow);
+}
+
+.btn-number {
+    background: var(--btn-number);
+}
+
+.btn-number:hover {
+    background: var(--btn-hover);
+}
+
+.btn-operator {
+    background: var(--btn-operator);
+    font-weight: 500;
+}
+
+.btn-operator:hover {
+    opacity: 0.8;
+}
+
+.btn-operator.active {
+    background: var(--text-primary);
+    color: var(--btn-operator);
+}
+
+.btn-equals {
+    background: var(--btn-equals);
+    grid-column: span 2;
+    font-weight: 500;
+}
+
+.btn-equals:hover {
+    opacity: 0.8;
+}
+
+.btn-clear {
+    background: var(--btn-clear);
+    color: var(--primary-bg);
+    font-weight: 500;
+}
+
+.btn-clear:hover {
+    opacity: 0.8;
+}
+
+.btn-zero {
+    grid-column: span 2;
+}
+
+/* Error state */
+.error {
+    color: #ff4444 !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-2px);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .calculator {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    .display {
+        padding: 15px;
+        min-height: 70px;
+    }
+    
+    .display-current {
+        font-size: 28px;
+    }
+    
+    .btn {
+        height: 55px;
+        font-size: 18px;
+    }
+    
+    .buttons {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .display-current {
+        font-size: 24px;
+    }
+    
+    .btn {
+        height: 50px;
+        font-size: 16px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .btn {
+        transition: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+    
+    .error {
+        animation: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-bg: #000000;
+        --secondary-bg: #1a1a1a;
+        --display-bg: #000000;
+        --btn-number: #333333;
+        --btn-operator: #ffffff;
+        --btn-equals: #ffffff;
+        --btn-clear: #ffffff;
+    }
+    
+    .btn-operator,
+    .btn-equals,
+    .btn-clear {
+        color: #000000;
+    }
+}
